@@ -15,9 +15,9 @@ namespace Fix.Parser.Experiment
             {
 
                     QuickFix.IMessageFactory msgFactory = new QuickFix.DefaultMessageFactory();
-                    ParsableMessage msg = new Fix.Parser.Experiment.ParsableMessage();
-                    string line = messageStr;
-                    string comma = "";
+                    var msg = new Fix.Parser.Experiment.ParsableMessage();
+                    var line = messageStr;
+                    var comma = "";
 
                         line = line.Trim();
                         msg.FromString(line, false, sessionDataDictionary, appDataDictionary, msgFactory);

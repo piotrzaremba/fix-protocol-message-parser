@@ -26,7 +26,7 @@ namespace Fix.Parser.Experiment
         {
             IList<int> numInGroupTagList = fields.GetGroupTags();
             IList<IField> numInGroupFieldList = new List<IField>();
-            string valueDescription = string.Empty;
+            var valueDescription = string.Empty;
 
             // Non-Group Fields
             foreach (var field in fields)
@@ -56,32 +56,32 @@ namespace Fix.Parser.Experiment
                         }
                         else
                         {
-                            sb.Append("\"" + field.Value.ToString() + "\",");
+                            sb.Append("\"" + field.Value + "\",");
                         }
                     }
                     else
                     {
-                        sb.Append("\"" + field.Value.ToString() + "\",");
+                        sb.Append("\"" + field.Value + "\",");
                     }
                 }
                 else
                 {
-                    sb.Append("\"" + field.Value.Tag.ToString() + "\":");
-                    sb.Append("\"" + field.Value.ToString() + "\",");
+                    sb.Append("\"" + field.Value.Tag + "\":");
+                    sb.Append("\"" + field.Value + "\",");
                 }
             }
 
             // Group Fields
-            foreach (IField numInGroupField in numInGroupFieldList)
+            foreach (var numInGroupField in numInGroupFieldList)
             {
                 // The name of the NumInGroup field is the key of the JSON list containing the Group items
                 if ((dd != null) && (dd.FieldsByTag.ContainsKey(numInGroupField.Tag)))
                     sb.Append("\"" + dd.FieldsByTag[numInGroupField.Tag].Name + dd.FieldsByTag[numInGroupField.Tag].Tag + "\":[");
                 else
-                    sb.Append("\"" + numInGroupField.Tag.ToString() + "\":[");
+                    sb.Append("\"" + numInGroupField.Tag + "\":[");
 
                 // Populate the JSON list with the Group items
-                for (int counter = 1; counter <= fields.GroupCount(numInGroupField.Tag); counter++)
+                for (var counter = 1; counter <= fields.GroupCount(numInGroupField.Tag); counter++)
                 {
                     sb.Append("{");
                     FieldMapToJSON(sb, dd, fields.GetGroup(counter, numInGroupField.Tag), humanReadableValues);
@@ -137,7 +137,7 @@ namespace Fix.Parser.Experiment
         /// <returns>a JSON string</returns>
         public string ToJSON(DataDictionary dd, bool humanReadableValues)
         {
-            StringBuilder sb = new StringBuilder().Append("{").Append("\"Header\":{");
+            var sb = new StringBuilder().Append("{").Append("\"Header\":{");
             FieldMapToJSON(sb, dd, Header, humanReadableValues).Append("},\"Body\":{");
             FieldMapToJSON(sb, dd, this, humanReadableValues).Append("},\"Trailer\":{");
             FieldMapToJSON(sb, dd, Trailer, humanReadableValues).Append("}}");

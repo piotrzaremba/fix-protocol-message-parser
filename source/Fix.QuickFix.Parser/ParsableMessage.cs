@@ -1,10 +1,9 @@
-﻿using System.Diagnostics;
-using System.Text;
+﻿using System.Text;
 using QuickFix;
 using QuickFix.DataDictionary;
 using QuickFix.Fields;
 
-namespace Fix.Parser.Experiment
+namespace Fix.QuickFix.Parser
 {
     public class ParsableMessage : Message
     {
@@ -21,126 +20,122 @@ namespace Fix.Parser.Experiment
 
         public ParsableMessage(Message src) : base(src) { }
 
-
-        private static StringBuilder FieldMapToJSON(StringBuilder sb, DataDictionary dd, FieldMap fields, bool humanReadableValues)
+        private static StringBuilder FieldMapToJson(StringBuilder sb, DataDictionary dd, FieldMap fields, bool humanReadableValues)
         {
             IList<int> numInGroupTagList = fields.GetGroupTags();
             IList<IField> numInGroupFieldList = new List<IField>();
-            string valueDescription = string.Empty;
 
             // Non-Group Fields
             foreach (var field in fields)
             {
-                if (dd.FieldsByTag[field.Value.Tag].Name == "NoSides")
+                if (global::QuickFix.Fields.CheckSum.TAG == field.Value.Tag) 
                 {
-                    Debug.WriteLine("");
+                    // FIX Json Encoding does not include CheckSum
+                    continue;
                 }
-
-                if (QuickFix.Fields.CheckSum.TAG == field.Value.Tag)
-                    continue; // FIX JSON Encoding does not include CheckSum
 
                 if (numInGroupTagList.Contains(field.Value.Tag))
                 {
+                    // Groups will be handled below.
                     numInGroupFieldList.Add(field.Value);
-                    continue; // Groups will be handled below
+                    continue; 
                 }
 
                 if ((dd != null) && (dd.FieldsByTag.ContainsKey(field.Value.Tag)))
                 {
-                    sb.Append("\"" + dd.FieldsByTag[field.Value.Tag].Name + field.Value.Tag + "\":");
+                    sb.Append($"\"{dd.FieldsByTag[field.Value.Tag].Name}{field.Value.Tag}\":");
                     if (humanReadableValues)
                     {
-                        if (dd.FieldsByTag[field.Value.Tag].EnumDict.TryGetValue(field.Value.ToString(), out valueDescription))
+                        if (dd.FieldsByTag[field.Value.Tag].EnumDict.TryGetValue(field.Value.ToString(), out var valueDescription))
                         {
-                            sb.Append("\"" + valueDescription + "\",");
+                            sb.Append($"\"{valueDescription}\",");
                         }
                         else
                         {
-                            sb.Append("\"" + field.Value.ToString() + "\",");
+                            sb.Append($"\"{field.Value}\",");
                         }
                     }
                     else
                     {
-                        sb.Append("\"" + field.Value.ToString() + "\",");
+                        sb.Append($"\"{field.Value}\",");
                     }
                 }
                 else
                 {
-                    sb.Append("\"" + field.Value.Tag.ToString() + "\":");
-                    sb.Append("\"" + field.Value.ToString() + "\",");
+                    sb.Append($"\"{field.Value.Tag}\":");
+                    sb.Append($"\"{field.Value}\",");
                 }
             }
 
             // Group Fields
-            foreach (IField numInGroupField in numInGroupFieldList)
+            foreach (var numInGroupField in numInGroupFieldList)
             {
-                // The name of the NumInGroup field is the key of the JSON list containing the Group items
+                // The name of the NumInGroup field is the key of the Json list containing the Group items.
                 if ((dd != null) && (dd.FieldsByTag.ContainsKey(numInGroupField.Tag)))
-                    sb.Append("\"" + dd.FieldsByTag[numInGroupField.Tag].Name + dd.FieldsByTag[numInGroupField.Tag].Tag + "\":[");
+                { sb.Append($"\"{dd.FieldsByTag[numInGroupField.Tag].Name}{dd.FieldsByTag[numInGroupField.Tag].Tag}\":[");}
                 else
-                    sb.Append("\"" + numInGroupField.Tag.ToString() + "\":[");
+                {     sb.Append($"\"{numInGroupField.Tag}\":[");}
 
-                // Populate the JSON list with the Group items
-                for (int counter = 1; counter <= fields.GroupCount(numInGroupField.Tag); counter++)
+                // Populate the Json list with the Group items.
+                for (var counter = 1; counter <= fields.GroupCount(numInGroupField.Tag); counter++)
                 {
                     sb.Append("{");
-                    FieldMapToJSON(sb, dd, fields.GetGroup(counter, numInGroupField.Tag), humanReadableValues);
+                    FieldMapToJson(sb, dd, fields.GetGroup(counter, numInGroupField.Tag), humanReadableValues);
                     sb.Append("},");
                 }
 
-                // Remove trailing comma
+                // Remove trailing comma.
                 if (sb.Length > 0 && sb[sb.Length - 1] == ',')
-                    sb.Remove(sb.Length - 1, 1);
+                { sb.Remove(sb.Length - 1, 1);}
 
                 sb.Append("],");
             }
-            // Remove trailing comma
+            // Remove trailing comma.
             if (sb.Length > 0 && sb[sb.Length - 1] == ',')
-                sb.Remove(sb.Length - 1, 1);
+            { sb.Remove(sb.Length - 1, 1);}
 
             return sb;
         }
 
 
         /// <summary>
-        /// Get a representation of the message as a string in FIX JSON Encoding.
+        /// Get a representation of the message as a string in FIX Json Encoding.
         /// See: https://github.com/FIXTradingCommunity/fix-json-encoding-spec
         /// </summary>
-        /// <returns>a JSON string</returns>
-        public string ToJSON()
+        /// <returns>a Json string</returns>
+        public string ToJson()
         {
-
-            return ToJSON(this.dataDictionary_, false);
+            return ToJson(this.dataDictionary_, false);
         }
 
 
         /// <summary>
-        /// Get a representation of the message as a string in FIX JSON Encoding.
+        /// Get a representation of the message as a string in FIX Json Encoding.
         /// See: https://github.com/FIXTradingCommunity/fix-json-encoding-spec
         ///
-        /// Per the FIX JSON Encoding spec, tags are converted to human-readable form, but values are not.
+        /// Per the FIX Json Encoding spec, tags are converted to human-readable form, but values are not.
         /// If you want human-readable values, set humanReadableValues to true.
         /// </summary>
-        /// <returns>a JSON string</returns>
-        public string ToJSON(bool humanReadableValues)
+        /// <returns>a Json string</returns>
+        public string ToJson(bool humanReadableValues)
         {
-            return ToJSON(this.dataDictionary_, humanReadableValues);
+            return ToJson(this.dataDictionary_, humanReadableValues);
         }
 
         /// <summary>
-        /// Get a representation of the message as a string in FIX JSON Encoding.
+        /// Get a representation of the message as a string in FIX Json Encoding.
         /// See: https://github.com/FIXTradingCommunity/fix-json-encoding-spec
         ///
-        /// Per the FIX JSON Encoding spec, tags are converted to human-readable form, but values are not.
+        /// Per the FIX Json Encoding spec, tags are converted to human-readable form, but values are not.
         /// If you want human-readable values, set humanReadableValues to true.
         /// </summary>
-        /// <returns>a JSON string</returns>
-        public string ToJSON(DataDictionary dd, bool humanReadableValues)
+        /// <returns>a Json string</returns>
+        public string ToJson(DataDictionary dd, bool humanReadableValues)
         {
-            StringBuilder sb = new StringBuilder().Append("{").Append("\"Header\":{");
-            FieldMapToJSON(sb, dd, Header, humanReadableValues).Append("},\"Body\":{");
-            FieldMapToJSON(sb, dd, this, humanReadableValues).Append("},\"Trailer\":{");
-            FieldMapToJSON(sb, dd, Trailer, humanReadableValues).Append("}}");
+            var sb = new StringBuilder().Append(@"{").Append($"\"Header\":{{");
+            FieldMapToJson(sb, dd, Header, humanReadableValues).Append($"}},\"Body\":{{");
+            FieldMapToJson(sb, dd, this, humanReadableValues).Append($"}},\"Trailer\":{{");
+            FieldMapToJson(sb, dd, Trailer, humanReadableValues).Append($"}}}}");
             return sb.ToString();
         }
     }
