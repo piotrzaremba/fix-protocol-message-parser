@@ -20,3 +20,5 @@ C:\git\fix-protocol-message-parser\source\Fix.Parser.Test.Harness\obj\Debug\net6
 C:\git\fix-protocol-message-parser\source\Fix.Parser.Test.Harness\obj\Debug\net6.0\Fix.Parser.Test.Harness.genruntimeconfig.cache
 C:\git\fix-protocol-message-parser\source\Fix.Parser.Test.Harness\obj\Debug\net6.0\ref\Fix.Parser.Test.Harness.dll
 C:\git\fix-protocol-message-parser\source\Fix.Parser.Test.Harness\bin\Debug\net6.0\FIX44.xml
+C:\git\fix-protocol-message-parser\source\Fix.Parser.Test.Harness\bin\Debug\net6.0\Fix.QuickFix.Parser.dll
+C:\git\fix-protocol-message-parser\source\Fix.Parser.Test.Harness\bin\Debug\net6.0\Fix.QuickFix.Parser.pdb

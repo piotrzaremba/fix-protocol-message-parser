@@ -9,6 +9,7 @@
       "Fix.Parser.Test.Harness/1.0.0": {
         "dependencies": {
           "Fix.Parser": "1.0.0",
+          "Fix.QuickFix.Parser": "1.0.0",
           "QuickFIXn.Core": "1.10.0",
           "QuickFIXn.FIX4.4": "1.10.0"
         },
@@ -52,6 +53,14 @@
         "runtime": {
           "Fix.Parser.dll": {}
         }
+      },
+      "Fix.QuickFix.Parser/1.0.0": {
+        "dependencies": {
+          "QuickFIXn.Core": "1.10.0"
+        },
+        "runtime": {
+          "Fix.QuickFix.Parser.dll": {}
+        }
       }
     }
   },
@@ -83,6 +92,11 @@
       "hashPath": "quickfixn.fix4.4.1.10.0.nupkg.sha512"
     },
     "Fix.Parser/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Fix.QuickFix.Parser/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

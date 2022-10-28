@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
-using System.Drawing;
-using System.Security.Principal;
+using Fix.QuickFix.Parser;
 using QuickFix;
 using QuickFix.DataDictionary;
 using QuickFix.Fields;
@@ -41,7 +40,14 @@ namespace Fix.Parser.Test.Harness
 
                 var fixParser = new Parser("./FIX44.xml");
                 var json = fixParser.Parse(messageStr);
-                Console.ReadLine();
+                Console.WriteLine(json);
+
+                var dataDictionary = new DataDictionary("./FIX44.xml");
+                
+                IMessageFactory msgFactory = new DefaultMessageFactory();
+                var message = new ParsableMessage();
+                message.FromString(messageStr, true, dataDictionary, dataDictionary, msgFactory);
+                Console.WriteLine(message.ToJson(dataDictionary, false));
             }
             catch (Exception e)
             {
