@@ -1,0 +1,13 @@
+C:\git\fix-protocol-message-parser\source\Fix.Parser\bin\Debug\net6.0\Fix.Parser.deps.json
+C:\git\fix-protocol-message-parser\source\Fix.Parser\bin\Debug\net6.0\Fix.Parser.dll
+C:\git\fix-protocol-message-parser\source\Fix.Parser\bin\Debug\net6.0\Fix.Parser.pdb
+C:\git\fix-protocol-message-parser\source\Fix.Parser\obj\Debug\net6.0\Fix.Parser.csproj.AssemblyReference.cache
+C:\git\fix-protocol-message-parser\source\Fix.Parser\obj\Debug\net6.0\Fix.Parser.GeneratedMSBuildEditorConfig.editorconfig
+C:\git\fix-protocol-message-parser\source\Fix.Parser\obj\Debug\net6.0\Fix.Parser.AssemblyInfoInputs.cache
+C:\git\fix-protocol-message-parser\source\Fix.Parser\obj\Debug\net6.0\Fix.Parser.AssemblyInfo.cs
+C:\git\fix-protocol-message-parser\source\Fix.Parser\obj\Debug\net6.0\Fix.Parser.csproj.CoreCompileInputs.cache
+C:\git\fix-protocol-message-parser\source\Fix.Parser\obj\Debug\net6.0\Fix.Parser.dll
+C:\git\fix-protocol-message-parser\source\Fix.Parser\obj\Debug\net6.0\refint\Fix.Parser.dll
+C:\git\fix-protocol-message-parser\source\Fix.Parser\obj\Debug\net6.0\Fix.Parser.pdb
+C:\git\fix-protocol-message-parser\source\Fix.Parser\obj\Debug\net6.0\ref\Fix.Parser.dll
+C:\git\fix-protocol-message-parser\source\Fix.Parser\bin\Debug\net6.0\FIX44.xml
