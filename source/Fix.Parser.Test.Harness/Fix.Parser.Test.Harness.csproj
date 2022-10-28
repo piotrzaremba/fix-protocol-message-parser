@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Fix.Parser\Fix.Parser.csproj" />
+    <ProjectReference Include="..\Fix.QuickFix.Parser\Fix.QuickFix.Parser.csproj" />
   </ItemGroup>
 
 </Project>

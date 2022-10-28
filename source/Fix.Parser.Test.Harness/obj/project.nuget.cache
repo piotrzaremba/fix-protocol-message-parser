@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "TP4jK3sFNtNTJgyaxZdWYQMXSnSjFQ7sOEXakBu+oJvkEpjpsC9ijLRolXXeXZ9IpdC72DoqV/Q8iniEdblaQQ==",
+  "dgSpecHash": "R+g4x3QOUQjCKb+FbJKeV3pL9z9X7U01gaKSZHxahy78klA4MSodQ/psgAyapF4JYv1kgp1n3FtzTqDr0Deqzw==",
   "success": true,
   "projectFilePath": "C:\\git\\fix-protocol-message-parser\\source\\Fix.Parser.Test.Harness\\Fix.Parser.Test.Harness.csproj",
   "expectedPackageFiles": [

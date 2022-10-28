@@ -30,7 +30,6 @@ namespace Fix.QuickFix.Parser
             return ToJson(this.dataDictionary_, false);
         }
 
-
         /// <summary>
         /// Get a representation of the message as a string in FIX Json Encoding.
         /// See: https://github.com/FIXTradingCommunity/fix-json-encoding-spec

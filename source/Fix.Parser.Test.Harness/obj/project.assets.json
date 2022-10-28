@@ -54,6 +54,19 @@
         "runtime": {
           "bin/placeholder/Fix.Parser.dll": {}
         }
+      },
+      "Fix.QuickFix.Parser/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "QuickFIXn.Core": "1.10.0"
+        },
+        "compile": {
+          "bin/placeholder/Fix.QuickFix.Parser.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Fix.QuickFix.Parser.dll": {}
+        }
       }
     }
   },
@@ -116,11 +129,17 @@
       "type": "project",
       "path": "../Fix.Parser/Fix.Parser.csproj",
       "msbuildProject": "../Fix.Parser/Fix.Parser.csproj"
+    },
+    "Fix.QuickFix.Parser/1.0.0": {
+      "type": "project",
+      "path": "../Fix.QuickFix.Parser/Fix.QuickFix.Parser.csproj",
+      "msbuildProject": "../Fix.QuickFix.Parser/Fix.QuickFix.Parser.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "Fix.Parser >= 1.0.0",
+      "Fix.QuickFix.Parser >= 1.0.0",
       "QuickFIXn.Core >= 1.10.0",
       "QuickFIXn.FIX4.4 >= 1.10.0"
     ]
@@ -158,6 +177,9 @@
           "projectReferences": {
             "C:\\git\\fix-protocol-message-parser\\source\\Fix.Parser\\Fix.Parser.csproj": {
               "projectPath": "C:\\git\\fix-protocol-message-parser\\source\\Fix.Parser\\Fix.Parser.csproj"
+            },
+            "C:\\git\\fix-protocol-message-parser\\source\\Fix.QuickFix.Parser\\Fix.QuickFix.Parser.csproj": {
+              "projectPath": "C:\\git\\fix-protocol-message-parser\\source\\Fix.QuickFix.Parser\\Fix.QuickFix.Parser.csproj"
             }
           }
         }

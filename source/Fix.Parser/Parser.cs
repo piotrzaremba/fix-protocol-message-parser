@@ -9,7 +9,6 @@ using QuickFix.FIX44;
 
 namespace Fix.Parser
 {
-
     public class Parser
     {
         private static StringBuilder _stringBuilder;
@@ -25,16 +24,16 @@ namespace Fix.Parser
             _stringBuilder = new StringBuilder();
             try
             {
-                IMessageFactory _defaultMsgFactory = new MessageFactory();
+                IMessageFactory defaultMsgFactory = new MessageFactory();
 
                 var message = new QuickFix.Message();
-                message.FromString(messageStr, true, _dataDictionary, _dataDictionary, _defaultMsgFactory);
+                message.FromString(messageStr, true, _dataDictionary, _dataDictionary, defaultMsgFactory);
 
                 var msgType = message.Header.GetField(new StringField(35));
                 var fieldsByTag = _dataDictionary.FieldsByTag;
                 var ddGrps = _dataDictionary.GetMapForMessage(msgType.Obj).Groups;
 
-                convertToJSON(_dataDictionary, msgType, fieldsByTag, ddGrps, message);
+                ConvertToJson(_dataDictionary, msgType, fieldsByTag, ddGrps, message);
 
             }
             catch (Exception e)
@@ -45,27 +44,27 @@ namespace Fix.Parser
             return _stringBuilder.ToString();
         }
 
-        private static void convertToJSON(DataDictionary dataDictionary, StringField msgType, IDictionary<int, DDField> fieldsByTag, Dictionary<int, DDGrp> ddGrps, QuickFix.Message message)
+        private static void ConvertToJson(DataDictionary dataDictionary, StringField msgType, IDictionary<int, DDField> fieldsByTag, Dictionary<int, DDGrp> ddGrps, QuickFix.Message message)
         {
             var rootNode = new JObject();
 
             var headerNode = new JObject();
-            convertFieldMapToJSON(dataDictionary, msgType, fieldsByTag, ddGrps, message.Header, headerNode);
+            ConvertFieldMapToJson(dataDictionary, msgType, fieldsByTag, ddGrps, message.Header, headerNode);
             rootNode.Add("header", headerNode);
 
             var bodyNode = new JObject();
-            convertFieldMapToJSON(dataDictionary, msgType, fieldsByTag, ddGrps, message, bodyNode);
+            ConvertFieldMapToJson(dataDictionary, msgType, fieldsByTag, ddGrps, message, bodyNode);
             rootNode.Add("body", bodyNode);
 
             var trailerNode = new JObject();
-            convertFieldMapToJSON(dataDictionary, msgType, fieldsByTag, ddGrps, message.Trailer, trailerNode);
+            ConvertFieldMapToJson(dataDictionary, msgType, fieldsByTag, ddGrps, message.Trailer, trailerNode);
             rootNode.Add("trailer", trailerNode);
 
             var str = rootNode.ToString(Formatting.Indented);
             _stringBuilder.AppendLine(str);
         }
 
-        private static void convertFieldMapToJSON(DataDictionary dataDictionary, StringField msgType, IDictionary<int, DDField> fieldsByTag, Dictionary<int, DDGrp> ddGrps, FieldMap fieldMap, JObject node)
+        private static void ConvertFieldMapToJson(DataDictionary dataDictionary, StringField msgType, IDictionary<int, DDField> fieldsByTag, Dictionary<int, DDGrp> ddGrps, FieldMap fieldMap, JObject node)
         {
             var fieldIterator = fieldMap.GetEnumerator();
             while (fieldIterator.MoveNext())
@@ -109,15 +108,15 @@ namespace Fix.Parser
                     fieldMap.GetGroup(i, group);
                     var jObject = new JObject();
 
-                    var subDDGrps = GetDDGrps(ddGrps, groupTag);
+                    var subDdGrps = GetDdGrps(ddGrps, groupTag);
 
-                    convertFieldMapToJSON(dataDictionary, msgType, fieldsByTag, subDDGrps, group, jObject);
+                    ConvertFieldMapToJson(dataDictionary, msgType, fieldsByTag, subDdGrps, group, jObject);
                     jArray.Add(jObject);
                 }
             }
         }
 
-        public static Dictionary<int, DDGrp> GetDDGrps(Dictionary<int, DDGrp> ddGrps, int tag)
+        public static Dictionary<int, DDGrp> GetDdGrps(Dictionary<int, DDGrp> ddGrps, int tag)
         {
             var dictionary = ddGrps.FirstOrDefault(x => x.Key == tag);
 

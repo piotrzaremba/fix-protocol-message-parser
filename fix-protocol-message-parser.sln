@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fix.Parser", "source\Fix.Pa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fix.Parser.Test.Harness", "source\Fix.Parser.Test.Harness\Fix.Parser.Test.Harness.csproj", "{1CB4BF46-6A0E-495F-8066-062B5702F3DA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fix.Parser.Experiment", "source\Fix.Parser.Experiment\Fix.Parser.Experiment.csproj", "{E28CD369-1470-403D-904D-CD83B1C4EA2B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fix.QuickFix.Parser", "source\Fix.QuickFix.Parser\Fix.QuickFix.Parser.csproj", "{EAD1BE76-9264-49C4-A9B6-CA823A767C85}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{1CB4BF46-6A0E-495F-8066-062B5702F3DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CB4BF46-6A0E-495F-8066-062B5702F3DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CB4BF46-6A0E-495F-8066-062B5702F3DA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E28CD369-1470-403D-904D-CD83B1C4EA2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E28CD369-1470-403D-904D-CD83B1C4EA2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E28CD369-1470-403D-904D-CD83B1C4EA2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E28CD369-1470-403D-904D-CD83B1C4EA2B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EAD1BE76-9264-49C4-A9B6-CA823A767C85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EAD1BE76-9264-49C4-A9B6-CA823A767C85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAD1BE76-9264-49C4-A9B6-CA823A767C85}.Release|Any CPU.ActiveCfg = Release|Any CPU
