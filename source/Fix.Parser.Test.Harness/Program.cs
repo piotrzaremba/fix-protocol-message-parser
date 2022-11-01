@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Fix.QuickFix.Parser;
+using Newtonsoft.Json.Linq;
 using QuickFix;
 using QuickFix.DataDictionary;
 using QuickFix.Fields;
@@ -14,6 +15,8 @@ namespace Fix.Parser.Test.Harness
             try
             {
                 var tcr = new TradeCaptureReport();
+
+                tcr.SetField(new LastPx(1.24m));
 
                 var noClearingInstructions1 = new TradeCaptureReport.NoSidesGroup.NoClearingInstructionsGroup();
                 noClearingInstructions1.ClearingInstruction = new ClearingInstruction(1);
@@ -40,7 +43,7 @@ namespace Fix.Parser.Test.Harness
 
                 var fixParser = new Parser("./FIX44.xml");
                 var json = fixParser.Parse(messageStr);
-                Console.WriteLine(json);
+                //Console.WriteLine(json);
 
                 var dataDictionary = new DataDictionary("./FIX44.xml");
                 
@@ -48,6 +51,8 @@ namespace Fix.Parser.Test.Harness
                 var message = new ParsableMessage();
                 message.FromString(messageStr, true, dataDictionary, dataDictionary, msgFactory);
                 Console.WriteLine(message.ToJson(dataDictionary, false));
+
+                Console.WriteLine(JToken.Parse(message.ToJson(dataDictionary, false)).ToString(Newtonsoft.Json.Formatting.Indented));
             }
             catch (Exception e)
             {
