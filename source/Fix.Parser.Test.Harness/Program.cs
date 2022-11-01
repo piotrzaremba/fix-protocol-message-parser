@@ -50,7 +50,7 @@ namespace Fix.Parser.Test.Harness
                 IMessageFactory msgFactory = new DefaultMessageFactory();
                 var message = new ParsableMessage();
                 message.FromString(messageStr, true, dataDictionary, dataDictionary, msgFactory);
-                //Console.WriteLine(message.ToJson(dataDictionary, false));
+                Console.WriteLine(message.ToJson(dataDictionary, false));
 
                 Console.WriteLine(JToken.Parse(message.ToJson(dataDictionary, false)).ToString(Newtonsoft.Json.Formatting.Indented));
             }

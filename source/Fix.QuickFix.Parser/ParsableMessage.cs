@@ -51,7 +51,7 @@ namespace Fix.QuickFix.Parser
         /// If you want human-readable values, set humanReadableValues to true.
         /// </summary>
         /// <returns>a Json string</returns>
-        public string ToJson(DataDictionary dd, bool humanReadableValues, bool structure=false)
+        public string ToJson(DataDictionary dd, bool humanReadableValues, bool structure = false)
         {
             if (structure)
             {
@@ -103,7 +103,25 @@ namespace Fix.QuickFix.Parser
                     }
                     else
                     {
-                        sb.Append($"\"{field.Value}\",");
+                        var pair = dd.FieldsByTag.FirstOrDefault(x => x.Key == field.Value.Tag);
+                        var ddField = pair.Value;
+                        if (ddField == null)
+                        {
+                            throw new Exception("DDField not found");
+                        }
+
+                        var ty = ddField.FieldType;
+
+                        if (IsNumeric(ddField.FieldType))
+                        {
+                            sb.Append($"{field.Value},");
+                        }
+                        else
+                        {
+                            sb.Append($"\"{field.Value}\",");
+                        }
+
+
                     }
                 }
                 else
@@ -149,6 +167,19 @@ namespace Fix.QuickFix.Parser
             }
 
             return sb;
+        }
+
+        private static bool IsNumeric(Type ddFieldFieldType)
+        {
+            switch (ddFieldFieldType)
+            {
+                case Type typez when typez == typeof(IntField):
+                    return true;
+                case Type typez when typez == typeof(DecimalField):
+                    return true;
+                default:
+                    return false;
+            }
         }
     }
 }
