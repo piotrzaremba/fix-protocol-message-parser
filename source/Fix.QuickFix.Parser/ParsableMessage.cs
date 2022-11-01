@@ -51,13 +51,24 @@ namespace Fix.QuickFix.Parser
         /// If you want human-readable values, set humanReadableValues to true.
         /// </summary>
         /// <returns>a Json string</returns>
-        public string ToJson(DataDictionary dd, bool humanReadableValues)
+        public string ToJson(DataDictionary dd, bool humanReadableValues, bool structure=false)
         {
-            var sb = new StringBuilder().Append(@"{").Append($"\"Header\":{{");
-            FieldMapToJson(sb, dd, Header, humanReadableValues).Append($"}},\"Body\":{{");
-            FieldMapToJson(sb, dd, this, humanReadableValues).Append($"}},\"Trailer\":{{");
-            FieldMapToJson(sb, dd, Trailer, humanReadableValues).Append($"}}}}");
-            return sb.ToString();
+            if (structure)
+            {
+                var sb = new StringBuilder().Append(@"{").Append($"\"Header\":{{");
+                FieldMapToJson(sb, dd, Header, humanReadableValues).Append($"}},\"Body\":{{");
+                FieldMapToJson(sb, dd, this, humanReadableValues).Append($"}},\"Trailer\":{{");
+                FieldMapToJson(sb, dd, Trailer, humanReadableValues).Append($"}}}}");
+                return sb.ToString();
+            }
+            else
+            {
+                var sb = new StringBuilder().Append(@"{");
+                FieldMapToJson(sb, dd, Header, humanReadableValues).Append($",");
+                FieldMapToJson(sb, dd, this, humanReadableValues).Append($",");
+                FieldMapToJson(sb, dd, Trailer, humanReadableValues).Append($"}}");
+                return sb.ToString();
+            }
         }
 
         private static StringBuilder FieldMapToJson(StringBuilder sb, DataDictionary dd, FieldMap fields, bool humanReadableValues)
