@@ -3,7 +3,7 @@ using QuickFix;
 using QuickFix.DataDictionary;
 using QuickFix.Fields;
 
-namespace Fix.QuickFix.Parser
+namespace QuickFixExt.Parser
 {
     public class ParsableMessage : Message
     {
