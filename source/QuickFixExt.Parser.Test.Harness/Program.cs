@@ -1,12 +1,10 @@
 ﻿using System.Diagnostics;
-using Fix.QuickFix.Parser;
-using Newtonsoft.Json.Linq;
 using QuickFix;
 using QuickFix.DataDictionary;
 using QuickFix.Fields;
 using QuickFix.FIX44;
 
-namespace Fix.Parser.Test.Harness
+namespace QuickFixExt.Parser.Test.Harness
 {
     internal class Program
     {
@@ -41,18 +39,12 @@ namespace Fix.Parser.Test.Harness
 
                 var messageStr = tcr.ToString();
 
-                var fixParser = new Parser("./FIX44.xml");
-                var json = fixParser.Parse(messageStr);
-                //Console.WriteLine(json);
-
                 var dataDictionary = new DataDictionary("./FIX44.xml");
                 
                 IMessageFactory msgFactory = new DefaultMessageFactory();
                 var message = new ParsableMessage();
                 message.FromString(messageStr, true, dataDictionary, dataDictionary, msgFactory);
                 Console.WriteLine(message.ToJson(dataDictionary, false));
-
-                Console.WriteLine(JToken.Parse(message.ToJson(dataDictionary, false)).ToString(Newtonsoft.Json.Formatting.Indented));
             }
             catch (Exception e)
             {

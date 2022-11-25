@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fix.Parser", "source\Fix.Parser\Fix.Parser.csproj", "{81CC65E5-56C1-466E-9570-8505014E2EE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickFixExt.Parser.Test.Harness", "source\QuickFixExt.Parser.Test.Harness\QuickFixExt.Parser.Test.Harness.csproj", "{1CB4BF46-6A0E-495F-8066-062B5702F3DA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fix.Parser.Test.Harness", "source\Fix.Parser.Test.Harness\Fix.Parser.Test.Harness.csproj", "{1CB4BF46-6A0E-495F-8066-062B5702F3DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickFixExt.Parser", "source\QuickFixExt.Parser\QuickFixExt.Parser.csproj", "{EAD1BE76-9264-49C4-A9B6-CA823A767C85}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fix.QuickFix.Parser", "source\Fix.QuickFix.Parser\Fix.QuickFix.Parser.csproj", "{EAD1BE76-9264-49C4-A9B6-CA823A767C85}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickFixExt.Parser.Test", "test\QuickFixExt.Parser.Test\QuickFixExt.Parser.Test.csproj", "{6B52AEB3-E31F-41A4-A714-5B0CD84BA22D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{81CC65E5-56C1-466E-9570-8505014E2EE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{81CC65E5-56C1-466E-9570-8505014E2EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{81CC65E5-56C1-466E-9570-8505014E2EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{81CC65E5-56C1-466E-9570-8505014E2EE3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1CB4BF46-6A0E-495F-8066-062B5702F3DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1CB4BF46-6A0E-495F-8066-062B5702F3DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CB4BF46-6A0E-495F-8066-062B5702F3DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +23,10 @@ Global
 		{EAD1BE76-9264-49C4-A9B6-CA823A767C85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAD1BE76-9264-49C4-A9B6-CA823A767C85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAD1BE76-9264-49C4-A9B6-CA823A767C85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B52AEB3-E31F-41A4-A714-5B0CD84BA22D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B52AEB3-E31F-41A4-A714-5B0CD84BA22D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B52AEB3-E31F-41A4-A714-5B0CD84BA22D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B52AEB3-E31F-41A4-A714-5B0CD84BA22D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

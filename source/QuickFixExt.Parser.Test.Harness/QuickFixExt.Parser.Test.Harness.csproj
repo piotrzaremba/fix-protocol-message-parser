@@ -13,8 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Fix.Parser\Fix.Parser.csproj" />
-    <ProjectReference Include="..\Fix.QuickFix.Parser\Fix.QuickFix.Parser.csproj" />
+    <ProjectReference Include="..\QuickFixExt.Parser\QuickFixExt.Parser.csproj" />
   </ItemGroup>
 
 </Project>
